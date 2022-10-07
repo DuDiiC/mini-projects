@@ -28,7 +28,6 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       JMX_PORT: 9997
       KAFKA_JMX_OPTS: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka-broker -Dcom.sun.management.jmxremote.rmi.port=9997
-#      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
     networks:
       - default
 
@@ -58,6 +57,7 @@ services:
       - "8083:8083"
     depends_on:
       - kafka-broker
+      - zookeeper
       - schemaregistry
     environment:
       CONNECT_BOOTSTRAP_SERVERS: kafka-broker:29092
